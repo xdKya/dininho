@@ -2,10 +2,14 @@ var trex, trexImg;
 var chao;
 var chaoImg;
 var chaoFake;
+var nuvem, nuvemImg;
+
 function preload() {
   //carrega imagens, animações, sons etc...
   trexImg = loadAnimation("trex3.png", "trex4.png");
   chaoImg = loadImage("ground2.png");
+
+  nuvemImg = loadImage("cloud.png");
 }
 
 function setup() {
@@ -40,5 +44,18 @@ function draw() {
     chao.x = chao.width / 2;
   }
 
+  gerarNuvens();
+
   drawSprites();
+}
+
+function gerarNuvens() {
+  if (frameCount % 60 === 0) {
+    nuvem = createSprite(620, random(50, 150), 20, 20);
+    nuvem.velocityX = -3;
+
+    //checar linha 5, depois linha 12
+    nuvem.addImage(nuvemImg);
+    nuvem.scale = 0.5;
+  }
 }
